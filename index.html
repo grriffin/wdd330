@@ -5,8 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WDD330 Profile Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="main.js"></script>
 </head>
 <body>
-  <h1>WDD330 Profile Page</h1>
+  <header>
+    <h1>WDD 330 Portfolio</h1>
+  </header>
+  <main>
+    <h2>Assignments</h2>
+    <ol id="assignment-list"></ol>
+  </main>
+  <script>
+    const links = [
+      {
+        label: "Week 1 notes",
+        url: "week01/index.html"
+      }
+    ]
+    const linkParent = document.getElementById('assignment-list');
+    buildAssignmentLinks(linkParent, links);
+  </script>
 </body>
 </html>
