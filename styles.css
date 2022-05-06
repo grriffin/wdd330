@@ -8,6 +8,7 @@ html,body {
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-left:1rem;
 }
 
 header {
@@ -30,4 +31,8 @@ header h1 {
 main {
   width: 90%;
   margin: 10px auto;
+}
+
+.highlighted {
+  background-color: gold;
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="..\styles.css" />
+</head>
+<body>
+  <h1>Week 03 Notes</h1>
+  <h2>Chapter 5 - Objects</h2>
+  <ul>
+    <li><p>You can check for a properties existing with "in" operator:</p><img src="img/inoperator.png"></li>
+    <li>There is also hasOwnProperty which will return true only if the object has the property (and it was not inherited from a super class)</li>
+	  <li>For in for finding all properties</li>
+  </ul>
+  <h2>Chapter 6 - DOM</h2>
+  <ul>
+    <li>Any CSS property names that are separated by dashes must be written in camelCase notation, so the dash is removed and the next letter is capitalized because dashes are not legal characters in property names.</li>
+    <li>There is a function called getComputedStyle() that will retrieve all the style information of an element that is given as a parameter. This is a read-only property, so is only used for finding out information about the style of an element.</li>
+    <li>While it may seem useful to be able to edit the styles of elements on the fly like this, it is <span class="highlighted">much better practice to dynamically change the class</span> of an element and keep the relevant styles for each class in a separate stylesheet.</li>
+  </ul>
+  <h2>Chapter 7 - Events</h2>
+  <ul>
+    <li>The addEventListener() method can also be called without a node, in which case it is applied to the global object, usually the whole browser window.</li>
+    <li>Events are passed an event object, which has a type parameter to check the type if you use the same handler for multiple events.</li>
+    <li>You can get mouse coordinates from the event object.</li>
+	<li>Event.key for keyboard events tells you which key was pressed</li>
+	<li>shiftKey, ctrlKey, altKey, metaKey also</li>
+	<li>There are touch events, but click fires for both mouse click and touch so that should be used most often.</li>
+	<li>There are no swiping gestures, have to be handled with touch events manually.</li>
+	<li>removeEventListener to remove a handler that's no longer needed.</li>
+	<li>event.preventDefault() to stop the default behavior once the handler exits, though some events can't be cancelled (check cancellable property). Also be careful with this…might not be what you want. Users may get confused.</li>
+  <li>Default behavior is "bubbling", event.stopPropagation() </li>
+  </ul>
+
+
+  <a href="exercises03.html"><h1>Exercises</h1></a>
+</body>
+</html>
