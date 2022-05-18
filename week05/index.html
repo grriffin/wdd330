@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="..\styles.css" />
+</head>
+<body>
+  <h1>Week 05 Notes</h1>
+  <h2>Chapter 10 - Testing and Debugging</h2>
+  <ul>
+    <li>Strict mode will turn things that used to just be considered "bad practice" into actual errors, which is good because errors can then be caught earlier instead of going unnoticed.</li>
+	  <li>Add 'use strict'; to the top of every javascript file, needs to be the first line (I think)</li>
+    <li>You can enable strict mode for just a single function by adding 'use strict'; as the first line in a function too.</li>
+    <li><div><p>Somehow this doesn't feel right:</p> <img src="img/use-strict-iffe.png"><p>I feel like I don't see self-invoking functions as much with modules now…</p> </div></li>
+    <li>	 Ooh and modules are automatically "strict", so no need to add it to the top of those files.</li>
+    <li> Check for the existence of browser features by using an if() around the function or object in question before calling it.</li>
+    <li> The trusty debugging by "alert". No longer really necessary, still widely used.</li>
+    <li> Console.log is what I prefer over alert.</li>
+    <li> Console.trace to log a stack trace, that is new to me.</li>
+    <li> Insert "debugger;" to make the browser stop to allow you to step through and inspect variables.</li>
+    <li> But don't forget to remove them for production!</li>
+    <li> Types of errors:
+      <ul>
+        <li>'Error' commonly thrown by programmers in their own code. Constructor takes a message as a parameter. </li>
+        <li>'RangeError' when a number is outside of the acceptable range</li>
+        <li>'ReferenceError' when calling an undefined function or referring to object that doesn't exist.</li>
+        <li>'SyntaxError' when there is a syntax error in the code</li>
+        <li>'TypeError' when a string is used where a number is expected, or some other incorrect type usage</li>
+        <li>'URIError' when there is a problem decoding/encoding a URI</li>
+        <li>'InternalError' non-standard error when there's something wrong with the javascript engine.</li>
+      </ul>
+    </li>
+    <li> For error types, the most supported properties are 'name', 'message', 'stack'. Might be others but inconsistently available in browsers.</li>
+    <li> Though you can throw anything, it really should be one of the above Error types.</li>
+    <li> Try, catch, finally, I know ye well.</li>
+    <li> TDD!</li>
+    <li> Jest is a framework made by Facebook to write unit tests.</li>
+    <li> An example of a test method: 
+    <pre>
+    test('factors of 12', () => {
+        expect(factorsOf(12)).toEqual([1,2,3,4,6,12]);
+    });</pre></li>
+    <li> There's also "toBe" but because this is testing an array, it needs to be toEqual.</li>
+    <li> More jest matcher methods: https://jestjs.io/docs/expect</li>
+    <li>.toThrow(); to write a test that checks for an exception. I wonder if you can check the details of the exception, to make sure the message is accurate.</li>
+  </ul>
+</body>
+</html>
