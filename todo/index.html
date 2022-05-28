@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Griffin's Todo Application</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Todo</h1>
+      <div class="todocontainer">
+        <ul id="todolist"></ul>
+        <div class="todo-footer">
+          <div id="todos-remaining">3000 tasks left</div>
+          <ul class="filter-buttons">
+            <li>
+              <input type="radio" id="btn-all" name="filter" checked />
+              <label for="btn-all">All</label>
+            </li>
+            <li>
+              <input type="radio" id="btn-active" name="filter" />
+              <label for="btn-active">Active</label>
+            </li>
+            <li>
+              <input type="radio" id="btn-complete" name="filter" />
+              <label for="btn-complete">Completed</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="add-todo-container">
+        <input type="text" id="todo-input" name="todo-item" />
+        <button id="btn-add-todo"><img src="img/todobtn.png" /></button>
+      </div>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
