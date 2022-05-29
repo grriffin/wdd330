@@ -1,5 +1,3 @@
-import { ToDoManager } from './ToDos.js';
-
 function removeAllChildNodes(parent) {
   if (parent.firstChild) {
     while (parent.firstChild) {
@@ -13,12 +11,16 @@ export function createAllTodosDom(parent, todos, onCompleted, onDeleted) {
   //setting innerHTML can lead to memory leaks as it doesn't
   //remove listeners...
   removeAllChildNodes(parent);
+  if (todos.length == 0) {
+    const nothingtoshow = document.createElement('label');
+    nothingtoshow.innerText = "No todo items to display for this view...";
+    nothingtoshow.classList.add('nothing');
+    parent.appendChild(nothingtoshow);
+    return;
+  }
 
   for (const todo of todos) {
-    let todoContainer = document.createElement('li');
-    todoContainer.id = `todo-${todo.id}`;
-    updateTodoDom(todoContainer, todo, onCompleted, onDeleted);
-    parent.appendChild(todoContainer);
+    updateTodoDom(parent, todo, onCompleted, onDeleted);
   }
 }
 
@@ -34,7 +36,7 @@ export function updateTodoDom(parent, todo, onCompleted, onDeleted) {
       onCompleted(todo, ev.target.checked);
     });
     label.appendChild(check);
-    label.appendChild(document.createTextNode(`${todo.itemText}-${todo.id}`));
+    label.appendChild(document.createTextNode(todo.itemText));
     if (todo.isComplete) {
       label.classList.add('completed');
     }

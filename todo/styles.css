@@ -2,12 +2,13 @@
 
 body {
   background-color: #CCC;
+  font-family: Arial, Helvetica, sans-serif;
   margin:0;
 }
 
 main {
   margin: 0 auto 0 auto ;
-  width:600px;
+  max-width: 634px;
   background-color: white;
 }
 
@@ -22,20 +23,43 @@ h1 {
   padding:1em;
 }
 
+.add-todo-container input {
+  flex-grow:1;
+}
+
+.add-todo-container button:disabled {
+  opacity: 0.3;
+}
+
+.nothing {
+  font-style: italic;
+}
+
 #todolist {
   padding:1em;
   list-style-type: none;
-  display:flex;
+  display:grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 1.5rem;
   flex-direction: column;
+  align-items: center;
 }
 
-#todolist li {
-  display:flex;
-  flex-direction: row;
+#todolist label {
+  max-width: 550px;
 }
 
-li label {
-  flex-grow: 1;
+#todolist button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:1.25rem;
+  background-color: white;
+  color: rgb(158, 37, 37);
+  border: none;
+  font-weight: bold;
+}
+
+#todolist button:hover {
+  color: rgb(237, 16, 16);
 }
 
 .completed {

@@ -11,12 +11,18 @@ window.onload = function(event) {
   console.log("Todo manager created");
   updateDom();
   console.log("Todos loaded");
+  wireUpFilterButtons();
   const textInput = document.getElementById('todo-input');
   const addButton = document.getElementById('btn-add-todo');
-  wireUpFilterButtons();
+  addButton.disabled = true;
+  textInput.addEventListener('input', (event) => {
+    const value = event.target.value || '';
+    addButton.disabled = value.length == 0;
+  });
   addButton.addEventListener('click', (event) =>{
     todoManager.add(textInput.value);
     textInput.value = '';
+    addButton.disabled = true;
     updateDom();
   });
   console.log("ready for more todos");
