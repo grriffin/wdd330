@@ -15,6 +15,10 @@
   <main>
     <h2>Assignments</h2>
     <ol id="assignment-list"></ol>
+    <h2>Projects</h2>
+    <ul id="check-in-list">
+
+    </ul>
   </main>
   <script>
     const links = [
@@ -39,8 +43,17 @@
         url: "week05/index.html"
       }
     ]
-    const linkParent = document.getElementById('assignment-list');
+    let linkParent = document.getElementById('assignment-list');
     buildAssignmentLinks(linkParent, links);
+
+    const projects = [
+      {
+        label: "Midterm Check-in: ToDo",
+        url: "todo/index.html"
+      }
+    ];
+    linkParent = document.getElementById('check-in-list');
+    buildAssignmentLinks(linkParent, projects);
   </script>
 </body>
 </html>
