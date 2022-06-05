@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 7 Notes</title>
+  <link rel="stylesheet" href="..\styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Week 7 Notes</h1>
+  </header>
+  <h2>Chapter 11 - Further Functions</h2>
+  <ul>
+    <li>Functions are first class objects, which means they have properties and even methods. For instance the length property returns the number of parameters.</li>
+    <li>Use the call method to set the value of this. Just pass it the object you want to be this as the first parameter.</li>
+    <li>Use "apply" to call the method, passing the paramters as an array for the second argument.</li>
+    <li>Memoization = result caching
+      <ul>
+        <li><img src="img/memoization.png"></li>
+        <li>Let's you cache inside a method for faster returns</li>
+      </ul>
+    </li>
+    <li>I was wondering why IIFE's were used: IIFEs are a useful way of performing a task while keeping any variables wrapped up within the scope of the function. This means the global namespace is not polluted with lots of variable names.</li>
+    <li>Functions can change themselves?! That seems very dangerous, and I can't imagine a valid use case for it…</li>
+    <li>"If the function is also assigned to another variable, this variable will maintain the original function definition and not be rewritten." <-- also confusing and strange. I won't ever use this.</li>
+    <li>I really don't think init-time branching is worth re-writing functions for. </li>
+    <li>Recursive functions - already well aware of recursion</li>
+	 <li>JavaScript is single threaded so callbacks are very important to create non-blocking code.</li>
+	 <li>Promises help avoid "callback hell" and make your code easier to understand, even though it really is just making use of callbacks underneath.</li>
+	 <li>Personally, I like async/await to handle the asynchronous code issues. Feels more natural to me coming from C#, and it keeps code mostly the same as synchronous.</li>
+	 <li>Make more generalized functions with callbacks - sometimes a function may become more useful if you can add a modifying function as a parameter. The example in the book is a random number generator that can apply some math function to the random value before it's returned.</li>
+	 <li>Functions can return functions, which is similar to the idea that functions can change themselves, and similarly the example in the book is a little flimsy. Could be useful in some functional scenarios though I guess.</li>
+	 <li>"A closure is formed when a function returns another function that then maintains access to any variables created in the original function’s scope. "</li>
+	 <li>Generators - yield! I didn't realize javascript had this concept. Used for iterating over a list of some kind. Call next on the generator function variable to get the next value.</li>
+	 <li>Pure functions:
+     <ul>
+		    <li>Function relies on input only, no outside state</li>
+		    <li>No side effects - no state outside of the function can be changed during execution</li>
+		    <li>Output is generated from input, the same input will always return the same output.</li>
+     </ul>
+   </li>
+   <li>Which means in practice:
+      <ul>
+		    <li>Pure Functions must have at least one parameter, or they would do nothing. </li>
+		    <li>Pure Functions must return a value</li>
+      </ul>
+    </li>
+	  <li>Pure functions that operate on an array, must return a new array</li>
+	<li>Currying is the process of returning a new function if a function is called without supplying all of the parameters.</li>
+  <li>"Advocates of functional programming can be quite partisan about its benefits. But even adopting some of its principles, such as keeping functions as pure as possible, and keeping changes in state to a minimum, will help improve the standard of your programming."</li>
+  </ul>
+  <h2>Chapter 13 - AJAX</h2>
+  <ul>
+    <li>Originally "Asynchronous JavaScript and XML"</li>
+    <li>Pretty much ubiquitous now, most websites update partial pages with javascript</li>
+    <li>Rather than the old XMLHttpRequest , the Fetch API should be used. </li>
+    <li>The Fetch API uses promises</li>
+    <li>Then(response) - response can access the response body, headers, status code (and text)</li>
+    <li>"At the present time, there is no support for the redirect() method in any browser." <- I'm not sure what the point of talking about it is then?</li>
+    <li>Response.text() to get the text of the response</li>
+    <li>Response.blob() to read raw data from the response</li>
+    <li>Response.json() returns a promise that can then be resolved </li>
+    <li>When using the fetch API, passing in a Request object gives more fine-grained control over what's sent</li>
+    <li>Example with fetch:
+      <img src="img/fetch.png">
+    </li>
+
+    <li>You can use fetch for retrieving and posting information</li>
+    <li>FormData can also be used to send form data with the Fetch API</li>
+    <li>Fetch is a living standard, so it's still being developed even while it's available, so it might change</li>
+  </ul>
+</body>
+</html>
