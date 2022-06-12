@@ -73,6 +73,43 @@
 	<li>Animation-fill-mode dictates what happens to the values at the end of the animation.</li>
 	<li>Name your animation something specific, so you don't conflict with reservered words</li>
 </ul>
+<h2>Chapter 12 - Canvas, SVG, and Drag and Drop</h2>
+<h3>Canvas</h3>
+<ul>
+  <li>Can draw anything on a canvas</li>
+  <li>You must set the width and height on the canvas element, not using CSS</li>
+  <li>To draw, you need to get a context with canvas.getContext("2d")</li>
+  <li>Once you have a context, you can set colors with strokeStyle and fillStyle</li>
+  <li>context also includes functions for drawing:fillRect, strokeRect</li>
+  <li>Coordinate system origin is top, left</li>
+  <li>You can set stroke and fill styles to something more than just colors, like gradients and patterns</li>
+  <li>You can create patterns from images, and set them to repeat</li>
+  <li>Create paths to draw more complex shapes</li>
+  <li>Angles are in radians, use Math.PI*2 for 360 for instance</li>
+  <li>After the path is set, call fill and stroke to actually draw it</li>
+  <li>It's possible to save canvas drawings with toDataUrl('path')</li>
+  <li>drawImage to draw images (without patterns)</li>
+  <li>You can also manipulate images by getting access to pixel data with image.data</li>
+  <li>Save the result of "data" to a variable for better performance rather than accessing it all the time</li>
+  <li>fillText will write out text</li>
 
+</ul>
+<h3>SVG</h3>
+<ul>
+  <li>I already know about SVGs</li>
+  <li>Simple shapes are easy, complex shapes get scary quick and should probably just be created in a tool like Inkscape</li>
+  <li>Raphael library for drawing and animating SVGs</li>
+  <li>With a Raphael container, animation is as simple as creating a list of attributes to animate, and passing them to an animate function</li>
+</ul>
+<h3>Drag and Drop</h3>
+<ul>
+  <li>Set the "draggable" attribute on any HTML element you'd like to be draggable</li>
+  <li>Add an event listener for "dragStart" on any draggable element</li>
+  <li>Add an event listener for "dragOver" and "drop" on elements that you want to accept drops</li>
+  <li>draggable has to be explicitly set to "true", it is not a boolean attribute (meaning you just have to add it to the element and it's presence will activate it I guess?)</li>
+  <li>use the DataTransfer object to set/accept data you care about on the element. i.e. call event.dataTransfer.setData during your drag start event</li>
+  <li>On drag over, just call event.preventDefault() to indicate you want to allow drop? I guess</li>
+  <li>handle the drop event on the item accepting the drop, and call event.originalEvent.dataTransfer.getData('text/plain') to get text that was set during the drag start.</li>
+</ul>
 </body>
 </html>
