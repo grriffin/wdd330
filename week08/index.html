@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8 Notes</title>
+  <link rel="stylesheet" href="..\styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Week 8 Notes - HTML5 and CSS3 for the Real World</h1>
+  </header>
+  <h2>Chapter 8 - Transformations and Transitions</h2>
+  <h3>Transforms</h3>
+  <ul>
+
+	<li>Transform lets you translate, rotate, scale, and/or skew any element</li>
+	<li>3d transforms are possible but not covered here</li>
+	<li>Translate moves an element from it's "current" position</li>
+	<li>TranslateX and TranslateY if you want to move just a single axis, or just Translate with both numbers if both axis are needed.</li>
+	<li>Translations do not work on inline elements! But you can use inline-block</li>
+	<li>Rotate can rotate around a point of origin by degrees</li>
+	<li>Point of origin by default is the objects center</li>
+	<li>Skew can skew elements in x and y axis (or individual axis like the others)</li>
+	<li>Transform-origin can change the point of origin for transforms. Set it by percentage in x and y axis</li>
+	<li>Order is important to get the effect you want, so pay attention the order you specify</li>
+</ul>
+<h3>Transitions</h3>
+<ul>
+	<li>Transitions require less client-side resources than animations so they appear smoother</li>
+	<li>IE10+ (I don't care about IE support)</li>
+	<li>Transitions allow a value of a property to change over time, providing simple animations</li>
+	<li>Declared with regular styles on an element</li>
+	<li>Transitions are usually used when the state changes, like hover, however they can also work fine when a class is added to an element, which works with javascript</li>
+	<li>Process for adding a transaction:
+    <ul>
+		<li>Set a default style for your element</li>
+		<li>Set a target style for your element (like with a hover pseudo class)</li>
+		<li>Set a transform property with your default styles for the element</li>
+		<li>Transform includes the property to transform, (or all), the duration, the timing function (linear, ease out, etc.)</li>
+		<li>You need to explicitly set pre-state. Don't rely on defaults. Ex If you want to animate rounded corners, set border-radius to 0 to start with. </li>
+		<li>You can transition multiple properties, separated by commas</li>
+    </ul>
+  </li>
+	<li>The most common timing functions include the key terms ease, linear, ease-in, ease-out, or ease-in-out. The default ease has a slow start, then it speeds up, and ends slowly. ease-in-out is similar to ease, but accelerates more sharply at the beginning. linear creates a transition that animates at a constant speed. ease-in creates a transition that is slow to start but gains speed, then stops abruptly. The opposite, ease-out, starts at full speed, then slows progressively as it reaches the conclusion of the transition. </li>
+	<li>Or you can use cubic-bezier(n, n, n, n) to get really specific and know calculus</li>
+	<li>Transition-delay sets a delay before animation starts</li>
+	<li>You can even do negative delays (I have no idea why you would want to do that)</li>
+</ul>
+<h3>Animations</h3>
+<ul>
+	<li>@keyframes <name of animation> is how you start an animation</li>
+	<li>Looks like it's own nested style block</li>
+	<li>You can set values that are animating by percentage, or use "from" and "to" (which equate to 0% and 100%)</li>
+	<li>You can specify percentages in any order, and even multiple percentages at once with commas:
+    <pre>
+	@keyframes appearDisappear { 
+	    0%, 100% {
+	    opacity: 0;
+	    }
+	    20%, 80% {
+	    opacity: 1;
+	    }
+	}</pre></li>
+	<li>On the actual style for an element, you use an animation property (or animation-name, animation-duration, animation-timing-function)</li>
+	<li>Name is whatever you set on your @keyframes</li>
+	<li>Timing functions are the same as what's described for transitions above, except you can also specify "steps"</li>
+	<li>Steps(number of steps, direction)</li>
+	<li>animation-iteration-count: infinite to run forever</li>
+	<li>Animation-direction: normal, reverse, alternate</li>
+	<li>Animation-delay (like transition)</li>
+	<li>Animation-fill-mode dictates what happens to the values at the end of the animation.</li>
+	<li>Name your animation something specific, so you don't conflict with reservered words</li>
+</ul>
+
+</body>
+</html>
