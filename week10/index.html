@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 10 Notes</title>
+  <link rel="stylesheet" href="..\styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Week 10 Notes - Validation and Fetch</h1>
+  </header>
+  <h2>Client-side form validation</h2>
+<h3>Built-in Validation</h3>
+<ul>
+	<li>HTML5 form controls include built-in form validation</li>
+	<li>Required, minlength, maxlength, min, max, type, pattern (for regex validation)</li>
+	<li>Form elements can styled with :valid and :invalid pseudo classes</li>
+	<li>:out-of-range also for some validations.</li>
+	<li>The browser handles blocking the submit until the issues are addressed</li>
+</ul>
+<h3>Validating forms using Javascript</h3>
+<ul>
+  <li>
+    HTML form elements have validation API access:
+    <ul>
+      <li>HTMLButtonELement</li>
+      <li>HTMLFieldSetElement</li>
+      <li>HTMLInputElement</li>
+      <li>HTMLOutputElement</li>
+      <li>HTMLSelectElement</li>
+      <li>HTMLTextAreaElement</li>
+    </ul>
+  </li>
+  <li>To show validation pesudo classes, the following properties can be set in javascript
+    <ul>
+      <li>validationMessage</li>
+      <li>Validity ValidityState with properties that indicate why it failed validation. Most of these are pretty self-explanatory:
+        <ul>
+			<li>patternMismatch</li>
+			<li>tooLong</li>
+			<li>tooShort</li>
+			<li>rangeOverflow (exceeds "max" value)</li>
+			<li>rangeUnderflow (below "min" value)</li>
+			<li>typeMismatch (this means it doesn't match the declared type for the input, like "email")</li>
+			<li>Valid</li>
+			<li>valueMissing - required attribute usually triggers this</li>
+      </ul>
+      </li>
+		<li>willValidate - returns true if the element will be validated when the form is submitted</li>
+    </ul>
+  </li>
+  <li>You can also call the following API methods on these elements:
+    <ul>
+      <li>checkValidity</li>
+      <li>reportValidity - reports invalid fields using events. Docs say it's useful when combined with preventDefault in onsubmit? Not sure why. Maybe if you know the field is invalid, you can call this method, call preventDefault, and exit onsubmit and it won't submit it, but you'll get events for which fields are not valid? (not sure why you need events since the javascript made it invalid?)</li>
+      <li>setCustomValidity - adds a custom message to the element. If this is set, the field is considered invalid, so you can make validations outside of the standard ones offered by HTML5.</li>
+    </ul>
+  </li>
+  <li>
+	  You can turn off the browser's built in validation with the novalidate attribute added to the form. <form novalidate>
+  </li>
+  <li>Example:
+  <pre>
+	// There are many ways to pick a DOM node; here we get the form itself and the email
+	// input box, as well as the span element into which we will place the error message.
+	const form  = document.getElementsByTagName('form')[0];
+	
+	const email = document.getElementById('mail');
+	const emailError = document.querySelector('#mail + span.error');
+	
+	email.addEventListener('input', function (event) {
+	  // Each time the user types something, we check if the
+	  // form fields are valid.
+	
+	  if (email.validity.valid) {
+	    // In case there is an error message visible, if the field
+	    // is valid, we remove the error message.
+	    emailError.textContent = ''; // Reset the content of the message
+	    emailError.className = 'error'; // Reset the visual state of the message
+	  } else {
+	    // If there is still an error, show the correct error
+	    showError();
+	  }
+	});
+	
+	form.addEventListener('submit', function (event) {
+	  // if the email field is valid, we let the form submit
+	
+	  if(!email.validity.valid) {
+	    // If it isn't, we display an appropriate error message
+	    showError();
+	    // Then we prevent the form from being sent by canceling the event
+	    event.preventDefault();
+	  }
+	});
+	
+	function showError() {
+	  if(email.validity.valueMissing) {
+	    // If the field is empty,
+	    // display the following error message.
+	    emailError.textContent = 'You need to enter an e-mail address.';
+	  } else if(email.validity.typeMismatch) {
+	    // If the field doesn't contain an email address,
+	    // display the following error message.
+	    emailError.textContent = 'Entered value needs to be an e-mail address.';
+	  } else if(email.validity.tooShort) {
+	    // If the data is too short,
+	    // display the following error message.
+	    emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
+	  }
+	
+	  // Set the styling appropriately
+	  emailError.className = 'error active';
+	}
+</pre>
+</li>
+</ul>
+<h2>Fetch API</h2>
+<ul>
+	<li>Fetch provides an interface for accessing HTTP resources</li>
+	<li>Fetch returns a promise</li>
+	<li>The promise returned by Fetch does *not* reject if the result code from the HTTP call is an error (like 404 or 500)</li>
+	<li>Fetch has at least one parameter, the URL you want to call</li>
+	<li>The promise that's returned will resolve with a "Response" object. It does not actually contain the json, but has a method called json that returns another promise which resolves to the parsed JSON (returns an object, not a string)</li>
+	<li>A second optional parameter to Fetch is available and is an init object. The init object has a lot of properties that can be set to change the behavior of fetch, like the method used (Default is GET). Properties are:
+		<ul>
+			<li>method: GET, POST, PUT, DELETE</li>
+			<li>mode: 'cors', no-cors, same-origin</li>
+			<li>cache: 'default', 'no-cache', 'reload', 'force-cache', 'only-if-cached'</li>
+			<li>credentials: 'same-origin', 'include', 'omit'</li>
+			<li>headers: { } 'Content-Type' is a typical one, but include any headers and their values here</li>
+			<li>redirect: 'follow', 'manual', 'error'</li>
+			<li>referrerPolicy: 'no-referrer-when-downgrade', 'no-referrer', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'</li>
+			<li>Body: the body in the correct format for 'Content-type'</li>
+		</ul>
+	</li>
+
+	<li>FormData can be used to add fields to be sent in form-encoded format. This includes files that can be added from an file type input box. </li>
+	<li>The response.body has a getReader method that will allow reading the response in chunks and processing it</li>
+	<li>Proper handling of the response would be to make sure the promise is resolved, then check that response.ok is true. </li>
+	<li>Rather than passing a URL and input object, fetch can be passed a Request object that includes those values instead. </li>
+	<li>A request object can only be used once, but has a clone method (and it can be passed to the constructor of Request to make the copy as well).</li>
+	<li>There's also a Headers type, rather than just using an anonymous object for headers. Headers can be added with .append(), checked with "has", and "get", and changed with "set"</li>
+	<li>Response object's most common properties are Response.status, Response.statusText, Response.ok</li>
+	<li>Response body can be one of these:
+		<ul>
+			<li>ArrayBuffer</li>
+			<li>TypedArray (Uint8Array and friends)</li>
+			<li>DataView</li>
+			<li>Blob</li>
+			<li>File</li>
+			<li>String, or a string literal</li>
+			<li>URLSearchParams</li>
+			<li>FormData</li>
+		</ul>
+		</li>
+	<li>Response and Request have the following methods to handle the body:
+		<ul>
+			<li>arrayBuffer()</li>
+			<li>blob</li>
+			<li>formData</li>
+			<li>json</li>
+			<li>text</li>
+		</ul>
+	</li>
+</ul>
+</body>
+</html>
