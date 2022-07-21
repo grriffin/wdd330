@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WDD330 Profile Page</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="main.js"></script>
-</head>
-<body>
-  <header>
-    <h1>WDD 330 Portfolio</h1>
-  </header>
-  <main>
-    <h2>Assignments</h2>
-    <ol id="assignment-list"></ol>
-    <h2>Projects</h2>
-    <ul id="check-in-list">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WDD330 Profile Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>WDD 330 Portfolio</h1>
+    </header>
+    <main>
+      <h2>Assignments</h2>
+      <ol id="assignment-list"></ol>
+      <h2>Projects</h2>
+      <ul id="check-in-list"></ul>
+    </main>
+    <script>
+      const links = [
+        {
+          label: 'Week 1 notes',
+          url: 'week01/index.html',
+        },
+        {
+          label: 'Week 2 exercises/notes',
+          url: 'week02/index.html',
+        },
+        {
+          label: 'Week 3 exercises/notes',
+          url: 'week03/index.html',
+        },
+        {
+          label: 'Week 4 exercises',
+          url: 'week04/index.html',
+        },
+        {
+          label: 'Week 5 notes',
+          url: 'week05/index.html',
+        },
+        {
+          label: 'Week 7 notes',
+          url: 'week07/index.html',
+        },
+        {
+          label: 'Week 8 notes',
+          url: 'week08/index.html',
+        },
+        {
+          label: 'Week 9 notes',
+          url: 'week09/index.html',
+        },
+        {
+          label: 'Week 10 notes',
+          url: 'week10/index.html',
+        },
+      ];
+      let linkParent = document.getElementById('assignment-list');
+      buildAssignmentLinks(linkParent, links);
 
-    </ul>
-  </main>
-  <script>
-    const links = [
-      {
-        label: "Week 1 notes",
-        url: "week01/index.html"
-      },
-      {
-        label: "Week 2 exercises/notes",
-        url: "week02/index.html"
-      },
-      {
-        label: "Week 3 exercises/notes",
-        url: "week03/index.html"
-      },
-      {
-        label: "Week 4 exercises",
-        url: "week04/index.html"
-      },
-      {
-        label: "Week 5 notes",
-        url: "week05/index.html"
-      },
-            {
-        label: "Week 7 notes",
-        url: "week07/index.html"
-      },
-      {
-        label: "Week 8 notes",
-        url: "week08/index.html"
-      },
-      {
-        label: "Week 9 notes",
-        url: "week09/index.html"
-      },
-      {
-        label: "Week 10 notes",
-        url: "week10/index.html"
-      }
-
-    ]
-    let linkParent = document.getElementById('assignment-list');
-    buildAssignmentLinks(linkParent, links);
-
-    const projects = [
-      {
-        label: "Midterm Check-in: ToDo",
-        url: "todo/index.html"
-      }
-    ];
-    linkParent = document.getElementById('check-in-list');
-    buildAssignmentLinks(linkParent, projects);
-  </script>
-</body>
+      const projects = [
+        {
+          label: 'Midterm Check-in: ToDo',
+          url: 'todo/index.html',
+        },
+        {
+          label: 'Final Challenge',
+          url: 'https://grriffin.github.io/starwarsbattlesim/',
+        },
+      ];
+      linkParent = document.getElementById('check-in-list');
+      buildAssignmentLinks(linkParent, projects);
+    </script>
+  </body>
 </html>
